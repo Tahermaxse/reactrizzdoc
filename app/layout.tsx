@@ -7,8 +7,8 @@ import { Footer } from "@/components/footer";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "React Rizz UI",
-  metadataBase: new URL("https://react-rizz-ui.vercel.app/"),
+  title: "ReactRizz Docs | Home",
+  metadataBase: new URL("https://reactrizzdoc.vercel.app/"),
   description:
     "A collection of React components that are easy to use and customizable. Made with ❤️ by Taher Hathi",
 };

@@ -1,13 +1,13 @@
 import { ModeToggle } from "@/components/theme-toggle";
-import { GithubIcon, CommandIcon, CircleArrowOutDownLeftIcon, Circle } from "lucide-react";
-import { BsTwitterX } from "react-icons/bs";
+import { SheetClose } from "@/components/ui/sheet";
+import { page_routes } from "@/lib/routes-config";
+import { Circle, GithubIcon } from "lucide-react";
 import Link from "next/link";
-import { buttonVariants } from "./ui/button";
-import Search from "./search";
+import { BsTwitterX } from "react-icons/bs";
 import Anchor from "./anchor";
 import { SheetLeftbar } from "./leftbar";
-import { page_routes } from "@/lib/routes-config";
-import { SheetClose } from "@/components/ui/sheet";
+import Search from "./search";
+import { buttonVariants } from "./ui/button";
 
 export const NAVLINKS = [
   {
@@ -20,7 +20,7 @@ export const NAVLINKS = [
   },
   {
     title: "Community",
-    href: "https://github.com/tahermaxse/reactrizzdoc/discussions",
+    href: "https://github.com/tahermaxse/reactrizzdoc",
   },
 ];
 

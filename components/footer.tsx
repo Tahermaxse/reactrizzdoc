@@ -13,7 +13,7 @@ export function Footer() {
             Build by{" "}
             <Link
               className="px-1 underline underline-offset-2"
-              href="https://github.com/tahermaxse"
+              href="https://taherhathi.vercel.app/"
             >
               taherhathi
             </Link>

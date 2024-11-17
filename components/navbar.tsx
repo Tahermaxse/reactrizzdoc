@@ -1,5 +1,6 @@
 import { ModeToggle } from "@/components/theme-toggle";
-import { GithubIcon, TwitterIcon, CommandIcon, CircleArrowOutDownLeftIcon, Circle } from "lucide-react";
+import { GithubIcon, CommandIcon, CircleArrowOutDownLeftIcon, Circle } from "lucide-react";
+import { BsTwitterX } from "react-icons/bs";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
 import Search from "./search";
@@ -50,13 +51,13 @@ export function Navbar() {
                 <GithubIcon className="h-[1.1rem] w-[1.1rem]" />
               </Link>
               <Link
-                href="#"
+                href="https://x.com/taher_max_"
                 className={buttonVariants({
                   variant: "ghost",
                   size: "icon",
                 })}
               >
-                <TwitterIcon className="h-[1.1rem] w-[1.1rem]" />
+                <BsTwitterX className="h-[1.1rem] w-[1.1rem]" />
               </Link>
               <ModeToggle />
             </div>

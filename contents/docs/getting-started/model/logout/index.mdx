@@ -1,0 +1,202 @@
+---
+title: Logout Modal
+description: A beautiful animated logout confirmation modal with glass-morphic design.
+---
+
+<Tabs defaultValue="preview" className="pt-5 pb-1">
+  <TabsList className="mb-4">
+    <TabsTrigger value="preview">Preview</TabsTrigger>
+    <TabsTrigger value="ts">Logout.tsx</TabsTrigger>
+  </TabsList>
+  <TabsContent value="preview">
+    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
+      
+      <DotPattern />
+    </div>
+  </TabsContent>
+  <TabsContent value="ts">
+    ```tsx {2-3} showLineNumbers
+    import React from 'react';
+    import { motion, AnimatePresence } from 'framer-motion';
+    import { Button } from "@/components/ui/button";
+
+    const Logout = ({ isOpen, onClose, onLogout }) => {
+      return (
+        <AnimatePresence>
+          {isOpen && (
+            <div className="fixed inset-0 flex items-center justify-center z-50">
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+                onClick={onClose}
+              />
+              
+              {/* Modal */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ type: "spring", duration: 0.5 }}
+                className="relative w-full max-w-sm mx-auto"
+              >
+                <div className="bg-[#0A0F1C]/90 backdrop-blur-xl rounded-xl p-8 shadow-2xl border border-slate-800/50">
+                  {/* Logout Icon */}
+                  <div className="mx-auto w-12 h-12 bg-slate-800/50 rounded-full flex items-center justify-center mb-4">
+                    <svg
+                      className="w-6 h-6 text-slate-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                      />
+                    </svg>
+                  </div>
+
+                  {/* Title */}
+                  <h2 className="text-xl text-center font-semibold text-white mb-3">
+                    Sign Out
+                  </h2>
+                  <p className="text-slate-400 text-center text-sm mb-6">
+                    Are you sure you want to sign out?
+                  </p>
+
+                  {/* Buttons */}
+                  <div className="flex gap-3">
+                    <Button
+                      variant="outline"
+                      className="flex-1 bg-[#0A0F1C]/50 border-slate-700 hover:bg-slate-800/50 text-white"
+                      onClick={onClose}
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      className="flex-1 bg-white text-black hover:bg-slate-200"
+                      onClick={onLogout}
+                    >
+                      Sign Out
+                    </Button>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+      );
+    };
+
+    export default Logout;
+    ```
+  </TabsContent>
+</Tabs>
+
+## Installation
+
+<Tabs defaultValue="CLI" className="pt-5 pb-1">
+  <TabsList className="mb-4">
+    <TabsTrigger value="CLI">Dependencies</TabsTrigger>
+    <TabsTrigger value="ts">Example</TabsTrigger>
+  </TabsList>
+  <TabsContent value="CLI">
+    
+    <Note title="Required Dependencies" type="note">
+    First, install the necessary dependencies:
+
+    ```bash
+    npm install framer-motion
+    ```
+
+    Then install the required shadcn/ui components:
+
+    ```bash
+    npx shadcn-ui@latest add button
+    ```
+    </Note>
+    
+   ## Update 
+    `tailwind.config.js`
+
+  <p>No additional Tailwind configuration is required for this component.</p>
+
+  </TabsContent>
+  <TabsContent value="ts">
+    ```tsx showLineNumbers 
+    import { useState } from 'react';
+    import LogoutModal from './LogoutModal';
+    import { Button } from "@/components/ui/button";
+
+    export default function Page() {
+      const [isModalOpen, setIsModalOpen] = useState(false);
+
+      const handleLogout = () => {
+        // Your logout logic here
+        setIsModalOpen(false);
+      };
+
+      return (
+        <div>
+          <Button onClick={() => setIsModalOpen(true)}>
+            Sign Out
+          </Button>
+          
+          <LogoutModal 
+            isOpen={isModalOpen} 
+            onClose={() => setIsModalOpen(false)}
+            onLogout={handleLogout}
+          />
+        </div>
+      );
+    }
+    ```
+  </TabsContent>
+</Tabs>
+
+## Props
+<hr />
+| Prop         | Type      | Description                                    | Default |
+|--------------|-----------|------------------------------------------------|---------|
+| isOpen       | boolean   | Controls the visibility of the modal           | false   |
+| onClose      | function  | Callback function when modal closes            | -       |
+| onLogout     | function  | Callback function when sign out is confirmed   | -       |
+| className    | string    | Additional classes to style the modal          | -       |
+
+## Features
+
+- 🎨 Glass-morphic design with dark theme
+- 🔄 Smooth animations using Framer Motion
+- 🌫️ Backdrop blur effect
+- ✨ Clean and minimal interface
+- 📱 Responsive layout
+- 🎯 Focus and hover states
+- 🎨 Clean typography
+- 🔒 Confirmation before logout
+- ⚡ Lightweight and performant
+
+## Customization
+
+You can customize the appearance of the modal by modifying the following classes:
+
+- Background color: `bg-[#0A0F1C]/90`
+- Border color: `border-slate-800/50`
+- Button colors: `bg-slate-800/50`
+- Icon background: `bg-slate-800/50`
+
+The animation parameters can be adjusted through the Framer Motion props:
+
+```tsx
+<motion.div
+  initial={{ opacity: 0, scale: 0.95 }}
+  animate={{ opacity: 1, scale: 1 }}
+  exit={{ opacity: 0, scale: 0.95 }}
+  transition={{ type: "spring", duration: 0.5 }}
+>
+```
+
+The modal width can be adjusted by modifying the `max-w-sm` class in the modal container. For a wider modal, you can use classes like `max-w-md` or `max-w-lg`.

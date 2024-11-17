@@ -1,0 +1,247 @@
+---
+title: Sign-in Modal
+description: A beautiful animated sign-in modal with social authentication options and glass-morphic design.
+---
+
+<Tabs defaultValue="preview" className="pt-5 pb-1">
+  <TabsList className="mb-4">
+    <TabsTrigger value="preview">Preview</TabsTrigger>
+    <TabsTrigger value="ts">SignIn.tsx</TabsTrigger>
+  </TabsList>
+  <TabsContent value="preview">
+    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
+      
+      <DotPattern />
+    </div>
+  </TabsContent>
+  <TabsContent value="ts">
+    ```tsx {4-6} showLineNumbers
+    import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { FcGoogle } from "react-icons/fc";
+import { BiLogoApple } from "react-icons/bi";
+import { BsTwitterX } from "react-icons/bs";
+
+const Sign = ({ isOpen, onClose }) => {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+            onClick={onClose}
+          />
+          
+          {/* Modal */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ type: "spring", duration: 0.5 }}
+            className="relative w-full max-w-md mx-auto"
+          >
+            <div className="bg-[#0A0F1C]/90 backdrop-blur-xl rounded-xl p-8 shadow-2xl border border-slate-800/50">
+              {/* User Icon */}
+              <div className="mx-auto w-12 h-12 bg-slate-800/50 rounded-full flex items-center justify-center mb-4">
+                <svg
+                  className="w-6 h-6 text-slate-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+              </div>
+
+              {/* Title */}
+              <h2 className="text-xl text-center font-semibold text-white mb-1">
+                Welcome back
+              </h2>
+              <p className="text-slate-400 text-center text-sm mb-6">
+                Please enter your information to sign in
+              </p>
+
+              {/* Social Sign-in Buttons */}
+              <div className="grid grid-cols-3 gap-3 mb-6">
+                <Button 
+                  variant="outline" 
+                  className="bg-[#0A0F1C]/50 border-slate-700 hover:bg-slate-800/50"
+                >
+                  <BiLogoApple className="w-5 h-5" />
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="bg-[#0A0F1C]/50 border-slate-700 hover:bg-slate-800/50"
+                >
+                  <FcGoogle className="w-5 h-5" />
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="bg-[#0A0F1C]/50 border-slate-700 hover:bg-slate-800/50"
+                >
+                  <BsTwitterX className="w-5 h-5" />
+                </Button>
+              </div>
+
+              {/* Divider */}
+              <div className="flex items-center gap-2 mb-6">
+                <div className="h-px flex-1 bg-slate-700" />
+                <span className="text-sm text-slate-500">OR</span>
+                <div className="h-px flex-1 bg-slate-700" />
+              </div>
+
+              {/* Form */}
+              <form className="space-y-4">
+                <div>
+                  <Input
+                    type="email"
+                    placeholder="Enter your email..."
+                    className="bg-slate-800/25 border-slate-700 text-white placeholder:text-slate-400"
+                  />
+                </div>
+                <div>
+                  <Input
+                    type="password"
+                    placeholder="••••••••"
+                    className="bg-slate-800/25 border-slate-700 text-white placeholder:text-slate-400"
+                  />
+                  <Button 
+                    variant="link" 
+                    className="text-sm text-slate-400 hover:text-white p-0 h-auto mt-1 float-right"
+                  >
+                    Forgot Password?
+                  </Button>
+                </div>
+                <Button className="w-full mt-2 bg-white text-black hover:bg-slate-200">
+                  Sign in
+                </Button>
+              </form>
+
+              {/* Sign up link */}
+              <p className="text-sm text-slate-400 text-center mt-6">
+                Don't have an account yet?{' '}
+                <Button 
+                  variant="link" 
+                  className="text-white p-0 h-auto hover:text-slate-200"
+                >
+                  Sign up
+                </Button>
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+};
+
+export default Sign;
+    ```
+  </TabsContent>
+</Tabs>
+
+## Installation
+
+<Tabs defaultValue="CLI" className="pt-5 pb-1">
+  <TabsList className="mb-4">
+    <TabsTrigger value="CLI">Dependencies</TabsTrigger>
+    <TabsTrigger value="ts">Example</TabsTrigger>
+  </TabsList>
+  <TabsContent value="CLI">
+    
+    <Note title="Required Dependencies" type="note">
+    First, install the necessary dependencies:
+
+    ```bash
+    npm install framer-motion lucide-react
+    ```
+
+    Then install the required shadcn/ui components:
+
+    ```bash
+    npx shadcn-ui@latest add button input
+    ```
+    </Note>
+    
+   ## Update 
+    `tailwind.config.js`
+
+  <p>No additional Tailwind configuration is required for this component.</p>
+
+  </TabsContent>
+  <TabsContent value="ts">
+    ```tsx showLineNumbers 
+    import { useState } from 'react';
+    import SignInModal from './SignInModal';
+    import { Button } from "@/components/ui/button";
+
+    export default function Page() {
+      const [isModalOpen, setIsModalOpen] = useState(false);
+
+      return (
+        <div>
+          <Button onClick={() => setIsModalOpen(true)}>
+            Open Sign In
+          </Button>
+          
+          <SignInModal 
+            isOpen={isModalOpen} 
+            onClose={() => setIsModalOpen(false)} 
+          />
+        </div>
+      );
+    }
+    ```
+  </TabsContent>
+</Tabs>
+
+## Props
+<hr />
+| Prop         | Type      | Description                           | Default |
+|--------------|-----------|---------------------------------------|---------|
+| isOpen       | boolean   | Controls the visibility of the modal  | false   |
+| onClose      | function  | Callback function when modal closes   | -       |
+| className    | string    | Additional classes to style the modal | -       |
+
+## Features
+
+- 🎨 Glass-morphic design with dark theme
+- 🔄 Smooth animations using Framer Motion
+- 🌫️ Backdrop blur effect
+- 🔑 Social sign-in buttons
+- 📱 Responsive layout
+- 🎯 Focus and hover states
+- 🎨 Clean typography
+- 🔒 Password input with "Forgot Password" link
+- 📝 Sign-up option for new users
+
+## Customization
+
+You can customize the appearance of the modal by modifying the following classes:
+
+- Background color: `bg-[#0A0F1C]/90`
+- Border color: `border-slate-800/50`
+- Button colors: `bg-slate-800/50`
+- Input background: `bg-slate-800/25`
+
+The animation parameters can be adjusted through the Framer Motion props:
+
+```tsx
+<motion.div
+  initial={{ opacity: 0, scale: 0.95 }}
+  animate={{ opacity: 1, scale: 1 }}
+  exit={{ opacity: 0, scale: 0.95 }}
+  transition={{ type: "spring", duration: 0.5 }}
+>
+```
